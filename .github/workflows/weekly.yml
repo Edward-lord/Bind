@@ -1,0 +1,19 @@
+# Veille hebdomadaire. Nécessite le secret de dépôt ANTHROPIC_API_KEY (à créer par Edward dans GitHub).
+name: veille-hebdo
+on:
+  schedule: [{cron: "0 6 * * 1"}]
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with: {path: seen.json, key: seen-${{ github.run_id }}, restore-keys: seen-}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.13"}
+      - run: pip install -r requirements.txt
+      - run: python -m cat_prospecting --out prospects.xlsx
+        env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"}
+      - uses: actions/upload-artifact@v4
+        with: {name: prospects, path: prospects.xlsx}
