@@ -1,0 +1,10 @@
+# Périmètre de l'agent de prospection CAT.
+# Valeurs d'exemple tirées du README : à adapter avant le premier lancement.
+offre: location            # neuf | occasion | location | energie | pieces | cargo
+secteurs: [BTP, "carrières et mines", "location d'engins"]
+zone: "Île-de-France"
+taille: "PME/ETI 50-250 salariés"
+fonctions: ["achats", "responsable parc matériel", "direction"]
+volume: 25                 # prospects par exécution
+besoin_precis: "susceptibles de louer des pelles hydrauliques"
+model: claude-opus-5-5

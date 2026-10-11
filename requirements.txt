@@ -1,0 +1,3 @@
+anthropic>=0.116
+PyYAML>=6
+openpyxl>=3.1
